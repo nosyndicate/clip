@@ -78,6 +78,10 @@ def valid_epoch(model, valid_loader):
 
 
 def main():
+    df = pd.read_csv("data/captions.txt")
+    df['id'] = [id_ for id_ in range(df.shape[0] // 5) for _ in range(5)]
+    df.to_csv("data/captions.csv", index=False)
+
     train_df, valid_df = make_train_valid_dfs()
     tokenizer = DistilBertTokenizer.from_pretrained(CFG.text_tokenizer)
     train_loader = build_loaders(train_df, tokenizer, mode="train")
@@ -116,3 +120,7 @@ def main():
             print("Saved Best Model!")
 
         lr_scheduler.step(valid_loss.avg)
+
+
+if __name__ == "__main__":
+    main()

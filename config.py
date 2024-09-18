@@ -1,7 +1,10 @@
+import torch
+
+
 class CFG:
     debug = False
-    image_path = image_path
-    captions_path = captions_path
+    image_path = "/home/ermo/src/clip/data/Images"
+    captions_path = "/home/ermo/src/clip/data"
     batch_size = 32
     num_workers = 2
     head_lr = 1e-3
